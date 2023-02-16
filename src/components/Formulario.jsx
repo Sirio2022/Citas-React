@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Error from './Error';
 
-export default function Formulario() {
+export default function Formulario({ pacientes, setPacientes }) {
   const [mascota, setMascota] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
@@ -8,6 +9,12 @@ export default function Formulario() {
   const [texto, setTexto] = useState('');
 
   const [error, setError] = useState(false);
+
+  const generarId = () => {
+    const random = Math.random().toString(36).substring(2);
+    const fecha = Date.now().toString(36);
+    return random + fecha;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +31,24 @@ export default function Formulario() {
       return;
     } else {
       setError(false);
+
+      // Crear el objeto
+      const paciente = {
+        mascota,
+        propietario,
+        email,
+        fecha,
+        texto,
+        id: generarId(),
+      };
+      setPacientes([...pacientes, paciente]);
+
+      // Reiniciar el form
+      setMascota('');
+      setPropietario('');
+      setEmail('');
+      setFecha('');
+      setTexto('');
     }
   };
 
@@ -40,9 +65,11 @@ export default function Formulario() {
         onSubmit={handleSubmit}
       >
         {error ? (
-          <p className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5">
-            Todos los campos son obligatorios
-          </p>
+          <Error>
+            <p className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5">
+              Todos los campos son obligatorios
+            </p>
+          </Error>
         ) : null}
         <div className="mb-5">
           <label
