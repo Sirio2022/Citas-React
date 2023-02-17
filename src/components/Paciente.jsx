@@ -25,6 +25,7 @@ export default function Paciente({ paciente, setPaciente }) {
         <button
           type="button"
           className="bg-indigo-600  px-10 py-2 rounded-lg text-white uppercase font-bold hover:bg-indigo-800 cursor-pointer transition-all duration-300"
+          onClick={() => setPaciente(paciente)}
         >
           Editar
         </button>
@@ -32,7 +33,6 @@ export default function Paciente({ paciente, setPaciente }) {
         <button
           type="button"
           className="bg-red-600 px-10 py-2 rounded-lg text-white uppercase font-bold hover:bg-red-800 cursor-pointer transition-all duration-300"
-          onClick={() => setPaciente(paciente)}
         >
           Eliminar
         </button>
