@@ -8,11 +8,8 @@ function App() {
   const [paciente, setPaciente] = useState({});
 
   useEffect(() => {
-    const obtenerLS = () => {
-      const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? [];
-      setPacientes(pacientesLS);
-    };
-    obtenerLS();
+    const pacientesLS = JSON.parse(localStorage.getItem('pacientes'));
+    pacientesLS?.length > 0 && setPacientes(pacientesLS);
   }, []);
 
   useEffect(() => {
