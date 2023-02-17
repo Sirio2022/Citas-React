@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Error from './Error';
 
-export default function Formulario({ pacientes, setPacientes, paciente, setPaciente }) {
+export default function Formulario({ pacientes, setPacientes, paciente, setPaciente, eliminarPaciente }) {
   const [mascota, setMascota] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
