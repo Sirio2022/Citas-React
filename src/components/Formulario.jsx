@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Error from './Error';
 
-export default function Formulario({ pacientes, setPacientes, paciente, setPaciente, eliminarPaciente }) {
+export default function Formulario({
+  pacientes,
+  setPacientes,
+  paciente,
+  setPaciente,
+  eliminarPaciente,
+}) {
   const [mascota, setMascota] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
@@ -30,13 +36,7 @@ export default function Formulario({ pacientes, setPacientes, paciente, setPacie
     e.preventDefault();
 
     // Validar
-    if (
-      mascota.trim() === '' ||
-      propietario.trim() === '' ||
-      email.trim() === '' ||
-      fecha.trim() === '' ||
-      texto.trim() === ''
-    ) {
+    if ([mascota, propietario, email, fecha, texto].includes('')) {
       setError(true);
       return;
     } else {
@@ -87,13 +87,7 @@ export default function Formulario({ pacientes, setPacientes, paciente, setPacie
         className="bg-white shadow-md rounded-lg py-10 px-5 mt-5 mb-10"
         onSubmit={handleSubmit}
       >
-        {error ? (
-          <Error>
-            <p className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5">
-              Todos los campos son obligatorios
-            </p>
-          </Error>
-        ) : null}
+        {error ? <Error>Todos los campos son obligatorios</Error> : null}
         <div className="mb-5">
           <label
             className="block text-gray-700 uppercase font-bold"
